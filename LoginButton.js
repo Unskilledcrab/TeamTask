@@ -22,7 +22,7 @@ import {
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
 
-export default class App extends React.Component {
+export default class ButtonLogin extends React.Component {
 
   constructor (props) {
     super(props)
@@ -38,7 +38,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    //this.StartImageRotateFunction();
+    this.StartImageRotateFunction();
     //this.ImageRotateOut();
   }
 
@@ -161,11 +161,11 @@ export default class App extends React.Component {
                 resizeMode: 'contain'}}
             >
             </Animated.Image>
-{/*
+
             <Animated.View
               style={{
-                flex: 0,
-                opacity: InputOpacity,
+                flex: 0
+                ,opacity: InputOpacity,
                 backgroundColor: '#FFF',
                 margin: InputMargin
               }}>
@@ -185,7 +185,7 @@ export default class App extends React.Component {
                 <TextInput placeholder='Password' />
               </View>
             </Animated.View>
-*/}
+
             <Animated.View
               style={{
                 //flex:1,
@@ -230,8 +230,8 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: 36,
-    //fontFamily: textFontFamily
-    fontWeight: 'bold'
+    fontFamily: textFontFamily
+    ,fontWeight: 'bold'
     ,textDecorationLine: 'underline'
   },
   button: {
@@ -247,6 +247,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 24,
-    //fontFamily: textFontFamily
+    fontFamily: textFontFamily
   }
 });
