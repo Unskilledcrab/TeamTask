@@ -10,20 +10,29 @@ const styles = StyleSheet.create({
   },
   container: {
      flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    //justifyContent: 'center',
+    //alignItems: 'center',
+    backgroundColor: '#9FC5E8'
   },
   button: {
     alignSelf: 'stretch',
     marginLeft: 50,
     marginRight: 50,
+    marginBottom: 5,
     borderRadius: 5,
     height: 40,
-    backgroundColor: '#7567B1',
+    backgroundColor: '#CFE2F3',
     justifyContent: 'center'
   },
+  inputHeaders: {
+    alignSelf:'flex-start',
+    marginTop:10,
+    marginLeft:50,
+    //marginBottom:5,
+    fontSize: 16
+  },
   buttonText: {
-      color: 'white',
+      color: 'black',
       alignSelf: 'center',
       fontSize: 16
   }
