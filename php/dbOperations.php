@@ -1,10 +1,10 @@
 <?php
 function connectDB()
 {
-	$server="a2plcpnl0398.prod.iad2.secureserver.net";
+	$server="localhost";
 	$db="TeamTask";
-	$user="ttadminaccess";
-	$pwd="n&3!R8n3Z)&s";
+	$user="tasktest";
+	$pwd="balls";
 	$connection=new mysqli($server,$user,$pwd, $db);
 	return $connection;
 }
