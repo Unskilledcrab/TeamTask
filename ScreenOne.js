@@ -47,7 +47,7 @@ class ScreenOne extends Component {
   {
       this.setState({ loading: true, disabled: true }, () =>
       {
-          fetch('https://gamersite123.000webhostapp.com/user_registration.php',
+          fetch('http://www.sullytech.com/TTphp/CreateTask.php',
           {
               method: 'POST',
               headers:
@@ -57,9 +57,15 @@ class ScreenOne extends Component {
               },
               body: JSON.stringify(
               {
-                  first_name: this.state.first_name,
-
-                  last_name: this.state.last_name
+                  taskName: this.state.first_name,
+                  taskDescription: 'test2',
+                  daysToComplete: 10,
+                  subTasks: 1,
+                  dueDate: '1/1/2018',
+                  signOffPersonnel: 5,
+                  priority: 1,
+                  frequency: 2,
+                  assignedPersonnel: 4,
               })
 
           }).then((response) => response.json()).then((responseJson) =>
@@ -68,7 +74,8 @@ class ScreenOne extends Component {
               this.setState({ loading: false, disabled: false });
           }).catch((error) =>
           {
-              console.error(error);
+              alert("an error occurred");
+              //console.error(error);
               this.setState({ loading: false, disabled: false });
           });
       });
@@ -231,7 +238,9 @@ class ScreenOne extends Component {
         />
         <TouchableHighlight
             onPress={() => navigate('ScreenTwo')}
-            style={[styles.button, {marginTop:15, marginBottom:15}]}>
+            style={[styles.button, {marginTop:15, marginBottom:15}]}
+            onPress = { this.saveData }
+            disabled = { this.state.disabled }>
             <Text style={styles.buttonText}> Create Task </Text>
         </TouchableHighlight>
       </ScrollView>
