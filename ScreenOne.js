@@ -8,7 +8,9 @@ import {
   TextInput,
   ScrollView,
   Item,
-  Picker
+  Picker,
+  ActivityIndicator,
+  Platform
 } from 'react-native';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
@@ -35,8 +37,41 @@ class ScreenOne extends Component {
     super(props)
     this.state = {
       myNumber: "",
-      selected1: "key1"
+      selected1: "key1",
+      first_name: '', last_name: '',
+      loading: false, disabled: false
     };
+  }
+
+  saveData = () =>
+  {
+      this.setState({ loading: true, disabled: true }, () =>
+      {
+          fetch('https://gamersite123.000webhostapp.com/user_registration.php',
+          {
+              method: 'POST',
+              headers:
+              {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(
+              {
+                  first_name: this.state.first_name,
+
+                  last_name: this.state.last_name
+              })
+
+          }).then((response) => response.json()).then((responseJson) =>
+          {
+              alert(responseJson);
+              this.setState({ loading: false, disabled: false });
+          }).catch((error) =>
+          {
+              console.error(error);
+              this.setState({ loading: false, disabled: false });
+          });
+      });
   }
 
   static navigationOptions = {
@@ -79,6 +114,7 @@ class ScreenOne extends Component {
         </Text>
         <TextInput style={[styles.button]}
           placeholder="Clean poop deck"
+          onChangeText = {(text) => this.setState({ first_name: text})}
         />
         <Text style={[styles.inputHeaders]}>
           Description
