@@ -75,16 +75,15 @@ class ScreenOne extends Component {
           }).catch((error) =>
           {
               alert("an error occurred");
-              //console.error(error);
+              console.error(error);
               this.setState({ loading: false, disabled: false });
           });
       });
   }
 
   static navigationOptions = {
-    title: 'GOTEM',
-    tabBarLabel: 'Tasks',
-    tabBarIcon: ({ tintColor }) => (
+    drawerLabel: 'Tasks',
+    drawerIcon: ({ tintColor }) => (
       <Image
         source={require('./assets/test/to-do-list.png')}
         style={[styles.icon, { tintColor: tintColor }]}

@@ -11,8 +11,8 @@ import styles from './styles';
 
 class ScreenTwo extends Component {
   static navigationOptions = {
-    tabBarLabel: 'ScreenTwo',
-    tabBarIcon: ({ tintColor }) => (
+    drawerLabel: 'ScreenTwo',
+    drawerIcon: ({ tintColor }) => (
       <Image
         source={require('./assets/test/chat-icon.png')}
         style={[styles.icon, { tintColor: tintColor }]}
@@ -24,7 +24,7 @@ class ScreenTwo extends Component {
     return (
       <View style={styles.container}>
         <TouchableHighlight
-          onPress={() => navigate('ScreenThree')}
+          onPress={() => this.props.navigation.openDrawer()}
           style={[styles.button, {backgroundColor: '#C56EE0'}]}>
           <Text style={styles.buttonText}>Go To Screen Three </Text>
         </TouchableHighlight>
