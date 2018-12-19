@@ -13,6 +13,7 @@ import {
   Platform
 } from 'react-native';
 import SearchableDropdown from 'react-native-searchable-dropdown';
+import RNPickerSelect from 'react-native-picker-select';
 
 import styles from './styles';
 
@@ -31,6 +32,13 @@ var items = [
   }
 ];
 
+var days = [
+  {
+    label: '1',
+    value: '1'
+  }
+]
+
 class ScreenOne extends Component {
 
   constructor (props) {
@@ -39,7 +47,8 @@ class ScreenOne extends Component {
       myNumber: "",
       selected1: "key1",
       first_name: '', last_name: '',
-      loading: false, disabled: false
+      loading: false, disabled: false,
+      numOfDays: "1"
     };
   }
 
@@ -115,133 +124,160 @@ class ScreenOne extends Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView style={styles.container}>
-        <Text style={[styles.inputHeaders, {marginTop:20}]}>
-          Task Name
+        <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+          CREATE TASK
         </Text>
-        <TextInput style={[styles.button]}
-          placeholder="Clean poop deck"
-          onChangeText = {(text) => this.setState({ first_name: text})}
-        />
-        <Text style={[styles.inputHeaders]}>
-          Description
+
+        <View
+          style={[styles.container, {backgroundColor:'#F0F0F0'}]}
+        >
+          <Text style={[styles.inputHeaders, {marginTop:20}]}>
+            Task Name
+          </Text>
+          <TextInput style={[styles.button]}
+            placeholder="Clean poop deck"
+            onChangeText = {(text) => this.setState({ first_name: text})}
+          />
+          <Text style={[styles.inputHeaders]}>
+            Description
+          </Text>
+          <TextInput style={[styles.button]}
+            placeholder="Mop the poop deck"
+          />
+        </View>
+
+        <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+          TASK FEATURES
         </Text>
-        <TextInput style={[styles.button]}
-          placeholder="Mop the poop deck"
-        />
-        <Text style={[styles.inputHeaders]}>
-          Estimated Days to Complete
-        </Text>
-        <Picker selectedValue = {this.state.myNumber} onValueChange = {this.updateUser}>
-           <Picker.Item label = "1" value = "steve" />
-           <Picker.Item label = "2" value = "ellen" />
-           <Picker.Item label = "3" value = "maria" />
-        </Picker>
-        <Text style={[styles.inputHeaders]}>
-          Sub-Tasks
-        </Text>
-        <SearchableDropdown
-          onItemSelect={item => alert(JSON.stringify(item))}
-          containerStyle={{ padding: 5 }}
-          textInputStyle={{
-            padding: 12,
-            borderWidth: 1,
-            borderColor: '#ccc',
-            borderRadius: 5,
-          }}
-          itemStyle={{
-            padding: 10,
-            marginTop: 2,
-            backgroundColor: '#ddd',
-            borderColor: '#bbb',
-            borderWidth: 1,
-            borderRadius: 5,
-          }}
-          itemTextStyle={{ color: '#222' }}
-          itemsContainerStyle={{ maxHeight: 140 }}
-          items={items}
-          placeholder="Pick da task"
-          resetValue={false}
-          underlineColorAndroid="transparent"
-        />
-        <Text style={[styles.inputHeaders]}>
-          Due Date
-        </Text>
-        <TextInput style={[styles.button]}
-          placeholder="Date picker here..."
-        />
-        <Text style={[styles.inputHeaders]}>
-          Sign-Off Personnel
-        </Text>
-        <SearchableDropdown
-          onItemSelect={item => alert(JSON.stringify(item))}
-          containerStyle={{ padding: 5 }}
-          textInputStyle={{
-            padding: 12,
-            borderWidth: 1,
-            borderColor: '#ccc',
-            borderRadius: 5,
-          }}
-          itemStyle={{
-            padding: 10,
-            marginTop: 2,
-            backgroundColor: '#ddd',
-            borderColor: '#bbb',
-            borderWidth: 1,
-            borderRadius: 5,
-          }}
-          itemTextStyle={{ color: '#222' }}
-          itemsContainerStyle={{ maxHeight: 140 }}
-          items={items}
-          placeholder="Pick da guy"
-          resetValue={false}
-          underlineColorAndroid="transparent"
-        />
-        <Text style={[styles.inputHeaders]}>
-          Priority
-        </Text>
-        <TextInput style={[styles.button]}
-          placeholder="1 - 3..."
-        />
-        <Text style={[styles.inputHeaders]}>
-          Frequency
-        </Text>
-        <TextInput style={[styles.button]}
-          placeholder="Maybe this is a check box that shows options..."
-        />
-        <Text style={[styles.inputHeaders]}>
-          Member / Team Assigned
-        </Text>
-        <SearchableDropdown
-          onItemSelect={item => alert(JSON.stringify(item))}
-          containerStyle={{ padding: 5 }}
-          textInputStyle={{
-            padding: 12,
-            borderWidth: 1,
-            borderColor: '#ccc',
-            borderRadius: 5,
-          }}
-          itemStyle={{
-            padding: 10,
-            marginTop: 2,
-            backgroundColor: '#ddd',
-            borderColor: '#bbb',
-            borderWidth: 1,
-            borderRadius: 5,
-          }}
-          itemTextStyle={{ color: '#222' }}
-          itemsContainerStyle={{ maxHeight: 140 }}
-          items={items}
-          placeholder="Pick da guy/gals"
-          resetValue={false}
-          underlineColorAndroid="transparent"
-        />
-        <TouchableHighlight
-            onPress={() => navigate('ScreenTwo')}
-            style={[styles.button, {marginTop:15, marginBottom:15}]}
-            onPress = { this.saveData }
-            disabled = { this.state.disabled }>
-            <Text style={styles.buttonText}> Create Task </Text>
-        </TouchableHighlight>
+        <View
+          style={[styles.container, {backgroundColor:'#F0F0F0'}]}
+        >
+          <Text style={[styles.inputHeaders]}>
+            Estimated Days to Complete
+          </Text>
+
+          <RNPickerSelect
+                    placeholder={{
+                        label: 'Number of Days...',
+                        value: 1,
+                        color: '#9EA0A4',
+                    }}
+                    style={styles.inputIOS}
+                    items={days}
+                    onValueChange={(value) => {
+                        this.setState({
+                            numOfDays: value,
+                        });
+                    }}
+                    value={this.state.numOfDays}
+                />
+          <Text style={[styles.inputHeaders]}>
+            Sub-Tasks
+          </Text>
+          <SearchableDropdown
+            onItemSelect={item => alert(JSON.stringify(item))}
+            containerStyle={{ padding: 5 }}
+            textInputStyle={{
+              padding: 12,
+              borderWidth: 1,
+              borderColor: '#ccc',
+              borderRadius: 5,
+            }}
+            itemStyle={{
+              padding: 10,
+              marginTop: 2,
+              backgroundColor: '#ddd',
+              borderColor: '#bbb',
+              borderWidth: 1,
+              borderRadius: 5,
+            }}
+            itemTextStyle={{ color: '#222' }}
+            itemsContainerStyle={{ maxHeight: 140 }}
+            items={items}
+            placeholder="Pick da task"
+            resetValue={false}
+            underlineColorAndroid="transparent"
+          />
+          <Text style={[styles.inputHeaders]}>
+            Due Date
+          </Text>
+          <TextInput style={[styles.button]}
+            placeholder="Date picker here..."
+          />
+          <Text style={[styles.inputHeaders]}>
+            Sign-Off Personnel
+          </Text>
+          <SearchableDropdown
+            onItemSelect={item => alert(JSON.stringify(item))}
+            containerStyle={{ padding: 5 }}
+            textInputStyle={{
+              padding: 12,
+              borderWidth: 1,
+              borderColor: '#ccc',
+              borderRadius: 5,
+            }}
+            itemStyle={{
+              padding: 10,
+              marginTop: 2,
+              backgroundColor: '#ddd',
+              borderColor: '#bbb',
+              borderWidth: 1,
+              borderRadius: 5,
+            }}
+            itemTextStyle={{ color: '#222' }}
+            itemsContainerStyle={{ maxHeight: 140 }}
+            items={items}
+            placeholder="Pick da guy"
+            resetValue={false}
+            underlineColorAndroid="transparent"
+          />
+          <Text style={[styles.inputHeaders]}>
+            Priority
+          </Text>
+          <TextInput style={[styles.button]}
+            placeholder="1 - 3..."
+          />
+          <Text style={[styles.inputHeaders]}>
+            Frequency
+          </Text>
+          <TextInput style={[styles.button]}
+            placeholder="Maybe this is a check box that shows options..."
+          />
+          <Text style={[styles.inputHeaders]}>
+            Member / Team Assigned
+          </Text>
+          <SearchableDropdown
+            onItemSelect={item => alert(JSON.stringify(item))}
+            containerStyle={{ padding: 5 }}
+            textInputStyle={{
+              padding: 12,
+              borderWidth: 1,
+              borderColor: '#ccc',
+              borderRadius: 5,
+            }}
+            itemStyle={{
+              padding: 10,
+              marginTop: 2,
+              backgroundColor: '#ddd',
+              borderColor: '#bbb',
+              borderWidth: 1,
+              borderRadius: 5,
+            }}
+            itemTextStyle={{ color: '#222' }}
+            itemsContainerStyle={{ maxHeight: 140 }}
+            items={items}
+            placeholder="Pick da guy/gals"
+            resetValue={false}
+            underlineColorAndroid="transparent"
+          />
+          <TouchableHighlight
+              onPress={() => navigate('ScreenTwo')}
+              style={[styles.button, {marginTop:15, marginBottom:15}]}
+              onPress = { this.saveData }
+              disabled = { this.state.disabled }>
+              <Text style={styles.buttonText}> Create Task </Text>
+          </TouchableHighlight>
+        </View>
       </ScrollView>
     );
   }

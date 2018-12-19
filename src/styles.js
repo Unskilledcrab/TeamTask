@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   icon: {
@@ -21,8 +19,30 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 5,
     height: 40,
-    backgroundColor: '#CFE2F3',
+    backgroundColor: 'white',
     justifyContent: 'center'
+  },
+  inputIOS: {
+    fontSize: 16,
+    paddingTop: 13,
+    paddingHorizontal: 10,
+    paddingBottom: 12,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    backgroundColor: 'white',
+    color: 'black',
+  },
+  inputAndroid: {
+      fontSize: 16,
+      paddingTop: 13,
+      paddingHorizontal: 10,
+      paddingBottom: 12,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      backgroundColor: 'white',
+      color: 'black',
   },
   inputHeaders: {
     alignSelf:'flex-start',

@@ -4,6 +4,7 @@ import {
   Text,
   View,
   ScrollView,
+  Items
 } from 'react-native';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
@@ -13,24 +14,21 @@ class SubTasks extends Component {
 
   constructor (props) {
     super(props)
-    //state should be what is currently selected
     this.state = {
-      items: [],
-      selected: ""
+      items: [{id:1, name:'null'}, {id:2, name:'test'}],
+      selected: '',
+      taskName: ''
     };
   }
 
-  // props
-  // header
-  // placeholder
-  //
-
+  componentDidMount() {
+    this.gatherData();
+  }
 
   gatherData = () =>
   {
       this.setState({ loading: true, disabled: true }, () =>
       {
-          //
           fetch('http://www.sullytech.com/TTphp/CreateTask.php',
           {
               method: 'POST',
@@ -41,55 +39,66 @@ class SubTasks extends Component {
               },
               body: JSON.stringify(
               {
-                  taskName: this.state.first_name,
+                  taskName: this.state.taskName,
               })
 
           }).then((response) => response.json()).then((responseJson) =>
           {
-              alert(responseJson);
+              //alert(responseJson);
+              alert('Casey needs to make da php file!');
+              for (var tasks in responseJson) {
+                console.log(tasks);
+                //this.setState({ items: [...this.state.items, tasks]});
+              }
               this.setState({ loading: false, disabled: false });
-              // need a for each and set items
           }).catch((error) =>
           {
-              alert("an error occurred");
+              alert("pickerSubTasks - gatherData Error");
               console.error(error);
-              this.setState({ loading: false, disabled: false });
+              //this.setState({ loading: false, disabled: false });
           });
       });
   }
 
+  handleItemSelected (item) {
+    this.setState({ selected: item});
+  }
+
   render() {
 
+    var handleSubTask = this.props.handleSubTask;
     return (
-
+      <View>
         <Text style={[styles.inputHeaders]}>
           Sub-Tasks
         </Text>
         <SearchableDropdown
-          onItemSelect={item => alert(JSON.stringify(item))}
-          containerStyle={{ padding: 5 }}
+          onItemSelect={item => handleSubTask(item)}
+          containerStyle={{alignSelf: 'stretch', marginLeft: 50, marginRight: 50}}
           textInputStyle={{
             padding: 12,
             borderWidth: 1,
-            borderColor: '#ccc',
+            borderColor: 'blue',
+            color: 'black',
             borderRadius: 5,
+            backgroundColor: 'pink'
           }}
           itemStyle={{
             padding: 10,
             marginTop: 2,
-            backgroundColor: '#ddd',
-            borderColor: '#bbb',
+            backgroundColor: 'white',
+            borderColor: 'black',
             borderWidth: 1,
             borderRadius: 5,
           }}
-          itemTextStyle={{ color: '#222' }}
+          itemTextStyle={{ color: 'purple' }}
           itemsContainerStyle={{ maxHeight: 140 }}
-          items={items}
+          items={this.state.items}
           placeholder="Pick da task"
           resetValue={false}
           underlineColorAndroid="transparent"
         />
-
+      </View>
     );
   }
 }
