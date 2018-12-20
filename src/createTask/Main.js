@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableHighlight,
-  View, Image, ScrollView} from 'react-native';
+  View, Image, ScrollView, KeyboardAvoidingView} from 'react-native';
 import styles from '../styles';
 
 import SubTasks from './pickerSubTasks';
@@ -45,18 +45,28 @@ class ScreenOne extends Component {
         </Text>
         <View style={[styles.container, {backgroundColor:'#F0F0F0'}]}>
 
+          <KeyboardAvoidingView style={{ flex: 1 }}
+              keyboardVerticalOffset={100} behavior={"position"}>
           <TaskName headerText = "Task Name" />
           <TaskName headerText = "Task Description" />
+          <TaskName headerText = "Estimated Days to Complete" />
           <SubTasks handleSubTask = {this.handleSubTask.bind(this)} />
+          <TaskName headerText = "Due Date" />
+          <TaskName headerText = "Sign-Off Personnel" />
+          <TaskName headerText = "Priority" />
+          <TaskName headerText = "Frequency" />
+          <TaskName headerText = "Member / Team Assigned" />
+          </KeyboardAvoidingView>
 
           <TouchableHighlight
-              onPress={() => navigate('ScreenTwo')}
+              onPress={() => navigate('ScreenTest')}
               style={[styles.button, {marginTop:15, marginBottom:15}]}>
               <Text style={styles.buttonText}> Create Task </Text>
           </TouchableHighlight>
 
         </View>
       </ScrollView>
+
     );
   }
 }

@@ -68,8 +68,8 @@ class SubTasks extends Component {
 
     var handleSubTask = this.props.handleSubTask;
     return (
-      <View>
-        <Text style={[styles.inputHeaders]}>
+      <View style={{paddingTop:10}}>
+        <Text style={[styles.inputHeaders, {color:'#9FC5E8'}]}>
           Sub-Tasks
         </Text>
         <SearchableDropdown
@@ -78,20 +78,20 @@ class SubTasks extends Component {
           textInputStyle={{
             padding: 12,
             borderWidth: 1,
-            borderColor: 'blue',
-            color: 'black',
+            borderColor: '#9FC5E8',
+            color: '#9FC5E8',
             borderRadius: 5,
-            backgroundColor: 'pink'
+            backgroundColor: 'rgba(0,0,0,0)'
           }}
           itemStyle={{
             padding: 10,
             marginTop: 2,
-            backgroundColor: 'white',
-            borderColor: 'black',
+            backgroundColor: 'rgba(0,0,0,0)',
+            borderColor: '#9FC5E8',
             borderWidth: 1,
             borderRadius: 5,
           }}
-          itemTextStyle={{ color: 'purple' }}
+          itemTextStyle={{ color: '#9FC5E8' }}
           itemsContainerStyle={{ maxHeight: 140 }}
           items={this.state.items}
           placeholder="Pick da task"

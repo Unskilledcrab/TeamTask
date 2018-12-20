@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   inputAndroid: {
-      fontSize: 16,
+      fontSize: 14,
       paddingTop: 13,
       paddingHorizontal: 10,
       paddingBottom: 12,
