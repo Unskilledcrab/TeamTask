@@ -2,6 +2,8 @@
 
     require_once 'dbOperations.php';
     
+    // connectDB method connects to the database with the proper credentials.
+    // 
     $connection = connectDB();
     if($connection->connect_error) die ("Unable to connect to database".$connection->connect_error);
 
@@ -20,6 +22,7 @@
     values('Ten', 'Tester dexcr', 2, 4, '20120618 10:34:09 AM', 3, 5, 6, 7)";
     */
 
+    //Run the query to insert the data into the Database
     $query_result = $connection->query($query);
 
     if ($query_result === true)
