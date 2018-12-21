@@ -4,7 +4,8 @@ import {
   Text,
   View,
   ScrollView,
-  Items
+  Items,
+  Platform
 } from 'react-native';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
@@ -17,7 +18,9 @@ class SubTasks extends Component {
     this.state = {
       items: [{id:1, name:'Test Task 1'}, {id:2, name:'Test Task 2'}],
       selected: '',
-      taskName: ''
+      taskName: '',
+      loading: false,
+      disabled: false
     };
   }
 
@@ -29,7 +32,7 @@ class SubTasks extends Component {
   {
       this.setState({ loading: true, disabled: true }, () =>
       {
-          fetch('http://www.sullytech.com/TTphp/CreateTask.php',
+          fetch('http://www.sullytech.com/TTphp/SubTaskNameQuery.php',
           {
               method: 'POST',
               headers:
@@ -39,13 +42,14 @@ class SubTasks extends Component {
               },
               body: JSON.stringify(
               {
-                  taskName: this.state.taskName,
+                  taskName: 'banana'
               })
 
           }).then((response) => response.json()).then((responseJson) =>
           {
-              //alert(responseJson);
-              alert('Casey needs to make da php file!');
+              alert(responseJson);
+              console.log(responseJson);
+              //alert('Casey needs to make da php file!');
               for (var tasks in responseJson) {
                 console.log(tasks);
                 //this.setState({ items: [...this.state.items, tasks]});
