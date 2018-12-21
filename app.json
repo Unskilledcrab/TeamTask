@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TeamTask_V2",
-    "slug": "teamtask_v2",
+    "name": "TeamTask_V3",
+    "slug": "teamtask_v3",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -25,6 +25,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "V2"
+    "description": "V3"
   }
 }

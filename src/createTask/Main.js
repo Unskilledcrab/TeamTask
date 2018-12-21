@@ -99,12 +99,15 @@ class ScreenOne extends Component {
       <KeyboardAwareScrollView>
         <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../assets/test/background.jpg')}>
         <ScrollView style={styles.container}>
-          <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
-            CREATE TASK: {this.state.taskName}
+          <Text style={[styles.buttonText, {textShadowOffset:{width:-1, height:1}, textShadowColor: 'rgba(0,0,0,0.75)', textShadowRadius: 2, fontWeight: 'bold', fontSize: 24, padding:20, marginTop:10}]}>
+            CREATE TASK
+          </Text>
+          <Text style={[styles.buttonText, {textTransform:'capitalize', fontSize: 20}]}>
+            {this.state.taskName}
           </Text>
 
           <View style={[styles.containerInputs]}>
-            <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+            <Text style={[styles.buttonText, {fontWeight:'bold', fontSize:18, padding:20, marginTop:10}]}>
               Required Inputs
             </Text>
 
@@ -129,7 +132,7 @@ class ScreenOne extends Component {
           */}
 
           <View style={[styles.containerInputs]}>
-            <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+            <Text style={[styles.buttonText, {fontWeight:'bold', fontSize:18, padding:20, marginTop:10}]}>
               Optional Inputs
             </Text>
 

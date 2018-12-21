@@ -52,7 +52,7 @@ class SubTasks extends Component {
               //alert('Casey needs to make da php file!');
               for (var tasks in responseJson) {
                 console.log(tasks);
-                //this.setState({ items: [...this.state.items, tasks]});
+                this.setState({ items: [...this.state.items, tasks]});
               }
               this.setState({ loading: false, disabled: false });
           }).catch((error) =>
