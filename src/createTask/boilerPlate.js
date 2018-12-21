@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Items
-} from 'react-native';
-
+import { StyleSheet, Text, View } from 'react-native';
+import TaskName from './taskName';
 import styles from '../styles';
 
-class SubTasks extends Component {
+class RequiredTasks extends Component {
 
   constructor (props) {
     super(props)
-
-  }
-
-  handleItemSelected (item) {
-    this.setState({ selected: item});
   }
 
   render() {
-
     return (
-      <View>
+      <View style={[styles.containerInputs]}>
+        <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+          Required Inputs {this.state.taskName}
+        </Text>
 
+        <TaskName headerText = "Task Name"
+          onChangeText={(value) => this.setState({taskName: value})}/>
+        <TaskName headerText = "Member / Team Assigned"
+          onChangeText={(value) => this.setState({assignedBody: value})}/>
+        <TaskName headerText = "Sign-Off Personnel"
+          onChangeText={(value) => this.setState({signOff: value})}/>
       </View>
     );
   }
 }
 
-export default SubTasks;
+export default RequiredTasks;
