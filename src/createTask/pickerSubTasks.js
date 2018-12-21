@@ -15,7 +15,7 @@ class SubTasks extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      items: [{id:1, name:'null'}, {id:2, name:'test'}],
+      items: [{id:1, name:'Test Task 1'}, {id:2, name:'Test Task 2'}],
       selected: '',
       taskName: ''
     };
@@ -95,6 +95,7 @@ class SubTasks extends Component {
           itemsContainerStyle={{ maxHeight: 140 }}
           items={this.state.items}
           placeholder="Pick da task"
+          placeholderTextColor = '#9FC5E8'
           resetValue={false}
           underlineColorAndroid="transparent"
         />

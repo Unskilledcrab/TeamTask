@@ -13,11 +13,7 @@ class SubTasks extends Component {
 
   constructor (props) {
     super(props)
-    this.state = {
-      items: [],
-      selected: '',
-      taskName: ''
-    };
+
   }
 
   handleItemSelected (item) {

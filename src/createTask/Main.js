@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableHighlight,
-  View, Image, ScrollView, KeyboardAvoidingView} from 'react-native';
+  View, Image, ScrollView, ImageBackground} from 'react-native';
 import styles from '../styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import SubTasks from './pickerSubTasks';
 import TaskName from './taskName';
@@ -12,10 +13,16 @@ class ScreenOne extends Component {
     super(props)
     this.state = {
       subTaskSelected: '',
-      taskName: ''
+      taskName: '',
+      description: '',
+      signOff: '',
+      assignedBody: '',
+      dueDate: '',
+      estimatedTime: '',
+      priority: '',
+      frequency: '',
+      currentIndex: 0
     };
-
-    //this.handleSubTask = this.handleSubTask.bind(this)
   }
 
   static navigationOptions = {
@@ -28,35 +35,52 @@ class ScreenOne extends Component {
     )
   }
 
-  handleSubTask(subTask) {
-    this.setState({subTaskSelected: subTask})
-  }
-
-  handleTaskName(taskName) {
-    this.setState({taskName: taskName})
-  }
-
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={styles.container}>
-        <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
-          CREATE TASK
-        </Text>
-        <View style={[styles.container, {backgroundColor:'#F0F0F0'}]}>
+      <KeyboardAwareScrollView>
+        <ImageBackground style={{width: '100%', height: '100%'}} source={require('../../assets/test/background.jpg')}>
+        <ScrollView style={styles.container}>
+          <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+            CREATE TASK
+          </Text>
 
-          <KeyboardAvoidingView style={{ flex: 1 }}
-              keyboardVerticalOffset={100} behavior={"position"}>
-          <TaskName headerText = "Task Name" />
-          <TaskName headerText = "Task Description" />
-          <TaskName headerText = "Estimated Days to Complete" />
-          <SubTasks handleSubTask = {this.handleSubTask.bind(this)} />
-          <TaskName headerText = "Due Date" />
-          <TaskName headerText = "Sign-Off Personnel" />
-          <TaskName headerText = "Priority" />
-          <TaskName headerText = "Frequency" />
-          <TaskName headerText = "Member / Team Assigned" />
-          </KeyboardAvoidingView>
+          <View style={[styles.containerInputs]}>
+            <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+              Required Inputs {this.state.taskName}
+            </Text>
+
+            <TaskName headerText = "Task Name"
+              onChangeText={(value) => this.setState({taskName: value})}/>
+            <TaskName headerText = "Member / Team Assigned"
+              onChangeText={(value) => this.setState({assignedBody: value})}/>
+            <TaskName headerText = "Sign-Off Personnel"
+              onChangeText={(value) => this.setState({signOff: value})}/>
+
+          </View>
+
+          <View style={[styles.containerInputs]}>
+            <Text style={[styles.buttonText, {padding:20, marginTop:10}]}>
+              Optional Inputs
+            </Text>
+
+            {/*
+            <SubTasks handleSubTask = {this.handleSubTask.bind(this)} />
+            */}
+            <TaskName headerText = "Task Description"
+              onChangeText={(value) => this.setState({description: value})}/>
+            <TaskName headerText = "SubTasks"
+              onChangeText={(value) => this.setState({subTask: value})}/>
+            <TaskName headerText = "Due Date"
+              onChangeText={(value) => this.setState({dueDate: value})}/>
+            <TaskName headerText = "Estimated Days to Complete"
+              onChangeText={(value) => this.setState({estimatedTime: value})}/>
+            <TaskName headerText = "Priority"
+              onChangeText={(value) => this.setState({priority: value})}/>
+            <TaskName headerText = "Frequency"
+              onChangeText={(value) => this.setState({frequency: value})}/>
+
+          </View>
 
           <TouchableHighlight
               onPress={() => navigate('ScreenTest')}
@@ -64,9 +88,9 @@ class ScreenOne extends Component {
               <Text style={styles.buttonText}> Create Task </Text>
           </TouchableHighlight>
 
-        </View>
-      </ScrollView>
-
+        </ScrollView>
+        </ImageBackground>
+      </KeyboardAwareScrollView>
     );
   }
 }

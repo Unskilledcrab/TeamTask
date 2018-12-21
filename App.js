@@ -22,7 +22,7 @@ const DrawerNavigation = createStackNavigator({
     defaultNavigationOptions: ({navigation}) => ({
       headerStyle: {backgroundColor: 'green'},
       title: 'TEST MODE',
-      headerLeft: <Text onPress={() => navigation.openDrawer()}>  Menu</Text>
+      headerLeft: <Text style={{borderRadius: 2, backgroundColor:'white', padding:10, paddingLeft:0}} onPress={() => navigation.openDrawer()}>  Menu</Text>
   })
 })
 

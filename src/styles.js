@@ -10,7 +10,24 @@ const styles = StyleSheet.create({
      flex: 1,
     //justifyContent: 'center',
     //alignItems: 'center',
-    backgroundColor: '#9FC5E8'
+    //backgroundColor: '#E5E5E5'
+  },
+  containerInputs: {
+    flex: 1,
+    backgroundColor:'white',
+    marginLeft:20,
+    marginRight:20,
+    borderRadius:5,
+    padding: 15,
+    marginTop:10,
+    marginBottom:10
+  },
+  seaInputs: {
+    alignSelf: 'stretch',
+    marginBottom: 5,
+    marginTop: 5,
+    borderRadius: 5,
+    height: 40
   },
   button: {
     alignSelf: 'stretch',
