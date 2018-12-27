@@ -11,7 +11,7 @@
 
     $json = json_decode(file_get_contents('php://input'), true);
 
-    $query = "SELECT taskName FROM tasks WHERE taskName!='$json[taskName]'";
+    $query = "SELECT taskID, taskName FROM tasks WHERE taskName!='$json[taskName]'";
 
     //Run the query to insert the data into the Database
     $query_result = $connection->query($query);
